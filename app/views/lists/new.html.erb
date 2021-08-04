@@ -1,5 +1,10 @@
-<h3>Create a new list</h3>
+<div class="container mt-4">
+  <div class="col-6 m-auto">
+    <h3>Create a new list</h3>
         <%= simple_form_for @list do |f| %>
           <%= f.input :name, placeholder: 'Drama' %>
-          <%= f.submit class: 'btn btn-flat' %>
+          <%= f.input :picture_url %>
+          <%= f.submit "Create List", class: "btn btn-primary" %>
         <% end %>
+  </div>
+</div>

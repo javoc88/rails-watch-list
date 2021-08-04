@@ -1,9 +1,20 @@
-<h1>Movies</h1>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1458053688450-eef5d21d43b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1504&q=80);">
+  <div class="container">
+    <h1>This is your page to <strong>save any kind of movies</strong> to <strong>create your own lists</strong>!</h1>
+    <p>Make it and share with your friends.</p>
+  </div>
+</div>
+<div class="container my-5">
+  <div class="row">
+    <div class="cards">
+      <% @lists.each do |list| %>
+        <div>
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= list.picture_url %>')">
+            <%= link_to  list.name, list_path(list) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<ul>
-  <% @lists.each do |list| %>
-    <li><%= list.name %></li>
-  <% end %>
-</ul>
-
-<%= link_to  "Create List", new_list_path %>
