@@ -10,7 +10,7 @@ puts "Creating movies"
   movies = JSON.parse(open("#{url}?page=#{i+1}").read)['results']
   movies.each do |movie|
     base_poster_url = "https://image.tmdb.org/t/p/original"
-    Movie.create!(
+    Movie.create(
       title: movie['title'],
       overview: movie['overview'],
       poster_url: "#{base_poster_url}#{['backdrop_path']}",
