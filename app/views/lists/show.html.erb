@@ -1,11 +1,13 @@
 <div class="card-trip">
-  <img src='<%= @list.picture_url %>' />
+  <%= cl_image_tag @list.picture_url.key %>
   <div class="card-trip-infos">
     <div>
       <h1> <%= @list.name %> </h1>
     </div>
   </div>
 </div>
+
+<%= link_to  "Delete list", list_path(@list), data: {confirm: "Are you sure?", method: :delete}, class: "ml-3 text-danger" %>
 
 <div class="container my-5">
   <div class="row">
@@ -15,12 +17,13 @@
           <li><%= i.movie.title %></li>
           <p>
             "<%= i.comment %>"
-            <i class="fas fa-eraser"></i>
-            <%= link_to  "Delete", list_path(@list), data: {confirm: "Are you sure?", method: :delete}, class: "ml-3 text-danger" %>
+            <%= link_to bookmark_path(i), method: :delete, data: { confirm: "Are you sure?" }, class: "ml-3 text-danger" do %>
+              <i class="fas fa-eraser"></i>
+            <% end %>
         <% end %>
       </ul>
   </div>
-  <%= link_to  "Create Bookmark", new_list_bookmark_path(@list), class: "btn btn-primary" %>
+  <%= link_to  "Create Bookmark", new_list_bookmark_path(@list), class: "ml-3 text-primary" %>
 </div>
 
 
