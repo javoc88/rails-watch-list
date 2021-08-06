@@ -4,26 +4,38 @@
     <div>
       <h1> <%= @list.name %> </h1>
     </div>
+    <div class="btn-right">
+      <%= link_to  "Delete list", list_path(@list), data: {confirm: "Are you sure?", method: :delete}, class: "btn btn-danger" %>
+    </div>
   </div>
 </div>
 
-<%= link_to  "Delete list", list_path(@list), data: {confirm: "Are you sure?", method: :delete}, class: "ml-3 text-danger" %>
-
 <div class="container my-5">
-  <div class="row">
-    <h2>Bookmarks</h2>
-      <ul>
-        <% @list.bookmarks.each do |i| %>
-          <li><%= i.movie.title %></li>
-          <p>
-            "<%= i.comment %>"
-            <%= link_to bookmark_path(i), method: :delete, data: { confirm: "Are you sure?" }, class: "ml-3 text-danger" do %>
-              <i class="fas fa-eraser"></i>
-            <% end %>
-        <% end %>
-      </ul>
+  <div class="card-trip">
+    <div class="card-trip-infos">
+      <h1>Bookmarks</h1> 
+      <%= link_to  "Create Bookmark", new_list_bookmark_path(@list), class: "btn btn-ghost" %>
+    </div>
   </div>
-  <%= link_to  "Create Bookmark", new_list_bookmark_path(@list), class: "ml-3 text-primary" %>
+      <div class="card-trip">
+        <ul>
+          <% @list.bookmarks.each do |i| %>
+            <div class="card-product">
+              <%= image_tag i.movie.poster_url %>
+              <div class="card-product-infos">
+                <h2><%= i.movie.title %></h2>
+                  <i>"<%= i.comment %>"</i>
+                  <p><%= i.movie.overview %></p>
+              </div>
+              <div class="card-product-infos">
+                <%= link_to bookmark_path(i), method: :delete, data: { confirm: "Are you sure?" }, class: "ml-3 text-danger" do %>
+                  <i class="fas fa-eraser"></i>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </ul>
+      </div>
 </div>
 
 
